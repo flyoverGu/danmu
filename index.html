@@ -20,11 +20,30 @@
             display: inline-block;
             left: 100%;
             top: 0;
-            font-size: 24px;
             line-height: 1em;
             height: 1em;
             white-space: nowrap;
-            transition: all 20s linear;
+            transition-property: color, font-size;
+            transition-duration: 2s;
+            text-shadow: 1px 1px 3px #666;
+            transform: translateY(0);
+            color: #fff;
+        }
+        @-webkit-keyframes shake {
+            50% {
+                -webkit-transform: translateY(4px)
+            }
+            100% {
+                -webkit-transform: translateY(0)
+            }
+        }
+        @keyframes shake {
+            50% {
+                transform: translateY(4px)
+            }
+            100% {
+                transform: translateY(0)
+            }
         }
     </style>
 </head>
@@ -36,11 +55,15 @@
         var socket = io('http://' + location.host + ':8081');
         socket.on('msg', function (data) {
             BarragesWillSent.push({
-                "id": data.uid,
+                "id": data.id,
                 "msg": data.msg,
                 "time": data.msgTime
             });
         });
     </script>
+    <!-- WSDK-->
+    <script src="https://g.alicdn.com/aliww/h5.openim.sdk/0.1.8/scripts/wsdk.js"></script>
+    <!--你的js-->
+    <script src="./barrage/main.js"></script>
 </body>
 </html>
